@@ -1,5 +1,7 @@
 package com.example.payment_system.dto;
 
+import com.example.payment_system.model.UserType;
+
 public class UserRequest {
     private final UserType type;
     private final String name;

@@ -1,5 +1,7 @@
 package com.example.payment_system.dto;
 
+import com.example.payment_system.model.UserType;
+
 public class UserResponse {
     private final Long id;
     private final String name;
