@@ -1,4 +1,7 @@
 package com.example.transactionService.exception;
 
-public class TransactionNotFoundException {
+public class TransactionNotFoundException extends RuntimeException{
+    public  TransactionNotFoundException(Long id){
+        super("Transaction not found"+id);
+    }
 }

@@ -1,43 +1,54 @@
 package com.example.transactionService.model;
 
 import com.example.transactionService.enums.TransactionStatus;
-import jakarta.annotation.Generated;
+import jakarta.persistence.*;
 
-import java.sql.Date;
-import java.sql.Time;
+import java.math.BigDecimal;
+import java.time.LocalDateTime;
 
 @Entity
 public class Transaction {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    long id;
-    long custumerId;
-    long merchantId;
-    double amount;
+    private Long id;
+
+    private Long customerId;
+
+    private Long merchantId;
+
+    private BigDecimal amount;
+
     @Enumerated(EnumType.STRING)
-    TransactionStatus status;
-    Time createdAt;
+    private TransactionStatus status;
+
+    private LocalDateTime createdAt;
+
     public Transaction(){}
     public Transaction(
-                       long custumerId, long merchantId, double amount,Time createdAt){
-        this.custumerId = custumerId;
+                       Long customerId, Long merchantId,
+                       BigDecimal amount){
+        this.customerId = customerId;
         this.merchantId = merchantId;
         this.amount=amount;
-        this.createdAt = createdAt;
+        this.status = TransactionStatus.PENDING;
+        this.createdAt=LocalDateTime.now();
     }
-    public long getId(){
+    public Long getId(){
         return id;
     }
-    public long getCostumerId(){
-        return custumerId;
+    public Long getCustomerId(){
+        return customerId;
     }
-    public long getMerchantId(){
+    public Long getMerchantId(){
         return merchantId;
     }
-    public Time getCreatedAt(){
+    public LocalDateTime getCreatedAt(){
         return createdAt;
     }
     public  TransactionStatus getStatus(){
         return status;
+    }
+    public BigDecimal getAmount(){
+        return amount;
     }
 }

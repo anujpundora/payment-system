@@ -2,8 +2,6 @@ package com.example.userService.dto;
 
 import com.example.userService.model.UserType;
 
-import javax.annotation.processing.Generated;
-
 public class UserResponse {
 
     private final String  name;
@@ -14,7 +12,6 @@ public class UserResponse {
         this.generatedId = generatedId;
         this.name = name;
         this.type = type;
-
     }
     public String getName(){
         return name;
