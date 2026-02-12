@@ -1,6 +1,7 @@
 package com.example.transactionService.model;
 
 import com.example.transactionService.enums.TransactionStatus;
+import com.example.transactionService.service.TransactionService;
 import jakarta.persistence.*;
 
 import java.math.BigDecimal;
@@ -32,6 +33,9 @@ public class Transaction {
         this.amount=amount;
         this.status = TransactionStatus.PENDING;
         this.createdAt=LocalDateTime.now();
+    }
+    public void setStatus(TransactionStatus status){;
+        this.status = status;
     }
     public Long getId(){
         return id;

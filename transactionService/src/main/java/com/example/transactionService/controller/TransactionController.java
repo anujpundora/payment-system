@@ -1,8 +1,9 @@
 package com.example.transactionService.controller;
 
-import com.example.transactionService.dto.TransactionDTO;
 import com.example.transactionService.dto.TransactionRequest;
 import com.example.transactionService.dto.TransactionResponse;
+import com.example.transactionService.dto.UpdateTransactionRequest;
+import com.example.transactionService.enums.TransactionStatus;
 import com.example.transactionService.model.Transaction;
 import com.example.transactionService.service.TransactionService;
 import org.springframework.http.HttpStatus;
@@ -37,6 +38,22 @@ public class TransactionController {
         );
 
         return ResponseEntity.status(HttpStatus.CREATED).body(response);
+    }
+    //Update Status
+    @PatchMapping("/{id}/status")
+    public ResponseEntity<TransactionResponse>updateStatus(@PathVariable Long id,
+                                                                @RequestBody UpdateTransactionRequest request){
+        Transaction updatedTransaction =
+                transactionService.updateTransactionStatus(id,request.getStatus());
+            TransactionResponse response = new TransactionResponse(
+                    updatedTransaction.getId(),
+                    updatedTransaction.getCustomerId(),
+                    updatedTransaction.getMerchantId(),
+                    updatedTransaction.getAmount(),
+                    updatedTransaction.getStatus(),
+                    updatedTransaction.getCreatedAt()
+            );
+            return ResponseEntity.ok(response);
     }
     @GetMapping("/{id}")
     public ResponseEntity<TransactionResponse> getTransaction(@PathVariable Long id){
